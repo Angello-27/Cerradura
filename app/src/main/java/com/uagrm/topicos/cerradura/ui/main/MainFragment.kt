@@ -1,17 +1,21 @@
 package com.uagrm.topicos.cerradura.ui.main
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.uagrm.topicos.cerradura.R
 import com.uagrm.topicos.cerradura.biometric.BiometricUtils
+import com.uagrm.topicos.cerradura.biometric.OnLockListener
 import kotlinx.android.synthetic.main.main_fragment.*
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), OnLockListener {
 
     companion object {
         fun newInstance() = MainFragment()
@@ -30,6 +34,15 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         image_view_lock.setOnClickListener { activateFootprint() }
+        viewModel.observableStatus.observe(this, Observer { value ->
+            if (value) {
+                image_view_lock.visibility = View.GONE
+                image_view_unlock.visibility = View.VISIBLE
+            } else {
+                image_view_lock.visibility = View.VISIBLE
+                image_view_unlock.visibility = View.GONE
+            }
+        })
     }
 
     private fun activateFootprint() {
@@ -39,8 +52,12 @@ class MainFragment : Fragment() {
             //.setNegativeButtonText("cancel")
             .setDeviceCredentialAllowed(true)
             .build()
-        val biometric = BiometricUtils.launchFingerprint(this)
+        val biometric = BiometricUtils.launchFingerprint(this, this)
         biometric.authenticate(promptInfo)
+    }
+
+    override fun onChange(boolean: Boolean) {
+        viewModel.change(boolean)
     }
 
 }

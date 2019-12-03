@@ -17,6 +17,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_unlock"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/icon_height"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/candado_abierto" />
+
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_lock"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/icon_height"
@@ -24,6 +35,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/candado" />
+        app:srcCompat="@drawable/candado_cerrado" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

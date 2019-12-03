@@ -3,7 +3,6 @@ package com.uagrm.topicos.cerradura
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.biometric.BiometricManager
 import com.uagrm.topicos.cerradura.biometric.BiometricUtils
 import com.uagrm.topicos.cerradura.ui.main.MainFragment
 

@@ -1,22 +1,22 @@
 package com.uagrm.topicos.cerradura.biometric
 
-import android.util.Log
 import androidx.biometric.BiometricPrompt
 
-class BiometricAuthentication : BiometricPrompt.AuthenticationCallback() {
+class BiometricAuthentication(private val listener: OnLockListener) :
+    BiometricPrompt.AuthenticationCallback() {
 
     override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
         super.onAuthenticationError(errorCode, errString)
-        Log.e("todo bien", "a la chucha error")
+        listener.onChange(false)
     }
 
     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
         super.onAuthenticationSucceeded(result)
-        Log.e("todo bien", "se desbloqueo el bicho")
+        listener.onChange(true)
     }
 
     override fun onAuthenticationFailed() {
         super.onAuthenticationFailed()
-        Log.i("todo bien", "falla con algo")
+        listener.onChange(false)
     }
 }
