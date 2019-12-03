@@ -1,5 +1,6 @@
 package com.uagrm.topicos.cerradura.biometric
 
+import android.content.Context
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.Fragment
@@ -7,7 +8,8 @@ import java.util.concurrent.Executors
 
 object BiometricUtils {
 
-    fun checkStatus(manager: BiometricManager): Boolean {
+    fun checkStatus(context: Context): Boolean {
+        val manager = BiometricManager.from(context)
         return when (manager.canAuthenticate()) {
             BiometricManager.BIOMETRIC_SUCCESS -> true
             BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE,
@@ -19,6 +21,7 @@ object BiometricUtils {
 
     fun launchFingerprint(fragment: Fragment): BiometricPrompt {
         val executor = Executors.newSingleThreadExecutor()
-        return BiometricPrompt(fragment, executor, BiometricAuthentication())
+        val authenticator = BiometricAuthentication()
+        return BiometricPrompt(fragment, executor, authenticator)
     }
 }

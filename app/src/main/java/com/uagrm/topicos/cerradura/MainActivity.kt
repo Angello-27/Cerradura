@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkBiometric() {
-        val manager = BiometricManager.from(this)
-        if (!BiometricUtils.checkStatus(manager)) {
+        if (!BiometricUtils.checkStatus(this)) {
             val makeText = Toast.makeText(
                 this,
                 R.string.message_not_support_biometric,

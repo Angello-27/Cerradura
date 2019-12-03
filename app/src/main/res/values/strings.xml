@@ -1,11 +1,9 @@
 <resources>
     <string name="app_name">Cerradura</string>
 
-    <string name="action_cancel">CANCELAR</string>
-
     <string name="label_biometric_unlock">Desbloqueo biométrico</string>
-    <string name="lable_fingerprint_unlock">Usa tu huella dactilar para desbloquear la cerradura</string>
+    <string name="lable_fingerprint_unlock">Usa tu huella dactilar para desbloquear</string>
     <string name="label_lock_press">Para desbloquear la cerradura, presione el icono en forma de candado</string>
 
-    <string name="message_not_support_biometric">Este dispositivo no admite autenticación biométrica.</string>
+    <string name="message_not_support_biometric">Este dispositivo no admite autenticación biométrica</string>
 </resources>
