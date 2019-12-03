@@ -12,6 +12,6 @@ class MainViewModel : ViewModel() {
         get() = status
 
     fun change(boolean: Boolean) {
-        status.value = boolean
+        status.postValue(boolean)
     }
 }
