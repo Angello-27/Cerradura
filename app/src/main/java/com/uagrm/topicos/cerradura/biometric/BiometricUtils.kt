@@ -19,9 +19,9 @@ object BiometricUtils {
         }
     }
 
-    fun launchFingerprint(fragment: Fragment, listener: OnLockListener): BiometricPrompt {
+    fun launchFingerprint(fragment: Fragment): BiometricPrompt {
         val executor = Executors.newSingleThreadExecutor()
-        val authenticator = BiometricAuthentication(listener = listener)
+        val authenticator = BiometricAuthentication(listener = fragment as OnLockListener)
         return BiometricPrompt(fragment, executor, authenticator)
     }
 }
