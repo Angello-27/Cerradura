@@ -51,14 +51,9 @@ class MainFragment : Fragment(), OnLockListener {
     }
 
     private fun activateFootprint() {
-        val promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle(getString(R.string.label_biometric_unlock))
-            .setSubtitle(getString(R.string.lable_fingerprint_unlock))
-            //.setNegativeButtonText("cancel")
-            .setDeviceCredentialAllowed(true)
-            .build()
+        val promptInfo = context?.let { BiometricUtils.createInfo(it) }
         biometric = BiometricUtils.launchFingerprint(this)
-        biometric.authenticate(promptInfo)
+        promptInfo?.let { biometric.authenticate(it) }
     }
 
     override fun onChange(boolean: Boolean) {
