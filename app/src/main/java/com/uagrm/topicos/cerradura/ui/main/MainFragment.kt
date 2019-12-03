@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.uagrm.topicos.cerradura.R
 
-class MainFragment : Fragment(), View.OnClickListener {
+class MainFragment : Fragment() {
 
     companion object {
         fun newInstance() = MainFragment()
@@ -27,10 +27,6 @@ class MainFragment : Fragment(), View.OnClickListener {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
-    }
-
-    override fun onClick(v: View?) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }
