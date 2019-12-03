@@ -5,12 +5,12 @@ import androidx.biometric.BiometricManager
 object BiometricUtils {
 
     fun checkStatus(manager: BiometricManager): Boolean {
-        when (manager.canAuthenticate()) {
-            BiometricManager.BIOMETRIC_SUCCESS -> return true
+        return when (manager.canAuthenticate()) {
+            BiometricManager.BIOMETRIC_SUCCESS -> true
             BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE,
             BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE,
-            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> return false
+            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> false
+            else -> false
         }
-        return false
     }
 }

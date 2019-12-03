@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkBiometric() {
         val manager = BiometricManager.from(this)
-        if (BiometricUtils.checkStatus(manager)) {
+        if (!BiometricUtils.checkStatus(manager)) {
             val makeText = Toast.makeText(
                 this,
                 "nada choco",

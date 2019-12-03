@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Cerradura</string>
+
+    <string name="label_lock_press">Para desbloquear la cerradura, presione el icono en forma de huella digital</string>
 </resources>
