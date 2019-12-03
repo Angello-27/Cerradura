@@ -1,6 +1,9 @@
 package com.uagrm.topicos.cerradura.biometric
 
 import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.fragment.app.Fragment
+import java.util.concurrent.Executors
 
 object BiometricUtils {
 
@@ -12,5 +15,10 @@ object BiometricUtils {
             BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> false
             else -> false
         }
+    }
+
+    fun launchFingerprint(fragment: Fragment): BiometricPrompt {
+        val executor = Executors.newSingleThreadExecutor()
+        return BiometricPrompt(fragment, executor, BiometricAuthentication())
     }
 }

@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         if (!BiometricUtils.checkStatus(manager)) {
             val makeText = Toast.makeText(
                 this,
-                "nada choco",
+                R.string.message_not_support_biometric,
                 Toast.LENGTH_LONG
             )
             makeText.show()

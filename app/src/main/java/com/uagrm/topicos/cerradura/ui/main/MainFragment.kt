@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.uagrm.topicos.cerradura.R
+import com.uagrm.topicos.cerradura.biometric.BiometricUtils
+import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
@@ -26,7 +29,17 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+        image_view_lock.setOnClickListener { activateFootprint() }
+    }
+
+    private fun activateFootprint() {
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle(getString(R.string.label_biometric_unlock))
+            .setSubtitle(getString(R.string.lable_fingerprint_unlock))
+            .setNegativeButtonText(getString(R.string.action_cancel))
+            .build()
+        val biometric = BiometricUtils.launchFingerprint(this)
+        biometric.authenticate(promptInfo)
     }
 
 }
