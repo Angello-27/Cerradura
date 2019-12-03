@@ -19,6 +19,7 @@ class MainFragment : Fragment(), OnLockListener {
         fun newInstance() = MainFragment()
     }
 
+    private lateinit var biometric: BiometricPrompt
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
@@ -32,6 +33,7 @@ class MainFragment : Fragment(), OnLockListener {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         image_view_lock.setOnClickListener { activateFootprint() }
+        image_view_unlock.setOnClickListener { closeFootprint() }
         viewModel.observableStatus.observe(this, Observer { value ->
             if (value) {
                 image_view_lock.visibility = View.GONE
@@ -43,6 +45,11 @@ class MainFragment : Fragment(), OnLockListener {
         })
     }
 
+    private fun closeFootprint() {
+        viewModel.change(false)
+        biometric.cancelAuthentication()
+    }
+
     private fun activateFootprint() {
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle(getString(R.string.label_biometric_unlock))
@@ -50,7 +57,7 @@ class MainFragment : Fragment(), OnLockListener {
             //.setNegativeButtonText("cancel")
             .setDeviceCredentialAllowed(true)
             .build()
-        val biometric = BiometricUtils.launchFingerprint(this)
+        biometric = BiometricUtils.launchFingerprint(this)
         biometric.authenticate(promptInfo)
     }
 
