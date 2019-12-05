@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.uagrm.topicos.cerradura.R
-import com.uagrm.topicos.cerradura.biometric.BiometricUtils
-import com.uagrm.topicos.cerradura.biometric.OnLockListener
+import com.uagrm.topicos.cerradura.utils.biometric.BiometricUtils
+import com.uagrm.topicos.cerradura.utils.biometric.OnLockListener
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment(), OnLockListener {

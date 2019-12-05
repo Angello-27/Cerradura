@@ -1,10 +1,10 @@
 package com.uagrm.topicos.cerradura
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.uagrm.topicos.cerradura.biometric.BiometricUtils
+import androidx.appcompat.app.AppCompatActivity
 import com.uagrm.topicos.cerradura.ui.main.MainFragment
+import com.uagrm.topicos.cerradura.utils.biometric.BiometricUtils
 
 class MainActivity : AppCompatActivity() {
 

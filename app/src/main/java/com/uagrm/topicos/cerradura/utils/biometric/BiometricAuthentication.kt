@@ -1,4 +1,4 @@
-package com.uagrm.topicos.cerradura.biometric
+package com.uagrm.topicos.cerradura.utils.biometric
 
 import androidx.biometric.BiometricPrompt
 
