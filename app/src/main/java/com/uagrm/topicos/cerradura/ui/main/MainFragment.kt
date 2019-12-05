@@ -39,11 +39,11 @@ class MainFragment : Fragment(), OnLockListener {
         image_view_unlock.setOnClickListener { closeFootprint() }
         viewModel.observableStatus.observe(this, Observer { value ->
             if (value) {
-                bluetooth.sendSignal(1)
+                bluetooth.sendSignal("A")
                 image_view_lock.visibility = View.GONE
                 image_view_unlock.visibility = View.VISIBLE
             } else {
-                bluetooth.sendSignal(0)
+                bluetooth.sendSignal("C")
                 image_view_lock.visibility = View.VISIBLE
                 image_view_unlock.visibility = View.GONE
             }

@@ -44,9 +44,9 @@ class BluetoothUtils {
     }
 
     @Throws(IOException::class)
-    fun sendSignal(value: Int): Boolean {
+    fun sendSignal(value: String): Boolean {
         if (socket != null) {
-            socket!!.outputStream.write(value)
+            socket!!.outputStream.write(value.toByteArray())
             return true
         }
         return false
