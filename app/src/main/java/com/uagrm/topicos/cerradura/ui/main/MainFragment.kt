@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.uagrm.topicos.cerradura.R
 import com.uagrm.topicos.cerradura.utils.biometric.BiometricUtils
 import com.uagrm.topicos.cerradura.utils.biometric.OnLockListener
+import com.uagrm.topicos.cerradura.utils.bluetooth.BluetoothUtils
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment(), OnLockListener {
@@ -19,6 +21,7 @@ class MainFragment : Fragment(), OnLockListener {
         fun newInstance() = MainFragment()
     }
 
+    private lateinit var bluetooth: BluetoothUtils
     private lateinit var biometric: BiometricPrompt
     private lateinit var viewModel: MainViewModel
 
@@ -36,13 +39,18 @@ class MainFragment : Fragment(), OnLockListener {
         image_view_unlock.setOnClickListener { closeFootprint() }
         viewModel.observableStatus.observe(this, Observer { value ->
             if (value) {
+                bluetooth.sendSignal(1)
                 image_view_lock.visibility = View.GONE
                 image_view_unlock.visibility = View.VISIBLE
             } else {
+                bluetooth.sendSignal(0)
                 image_view_lock.visibility = View.VISIBLE
                 image_view_unlock.visibility = View.GONE
             }
         })
+        bluetooth = BluetoothUtils()
+        if (bluetooth.existDevice()) this.bluetooth.devicesSearch()
+        bluetooth.connect()
     }
 
     private fun closeFootprint() {
